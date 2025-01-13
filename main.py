@@ -61,10 +61,29 @@ def get_week_scores(league_id, week):
 
 
 def get_stats(user_dict):
-    # get the top overall scorer
+    stats = {}
+
+    # get the season top total scorer
     top_scorer = max(user_dict, key=lambda x: user_dict[x]["total_points"])
     top_scorer_team_name = user_dict[top_scorer]["team_name"]
     top_scorer_display_name = user_dict[top_scorer]["display_name"]
+
+    stats["season_total_points"] = {
+        "display_name": top_scorer_display_name,
+        "team_name": top_scorer_team_name,
+        "points": user_dict[top_scorer]["total_points"],
+    }
+
+    # get the season top week scorer
+    top_week_scorer = max(user_dict, key=lambda x: max(user_dict[x]["scores"].values()))
+    top_week_scorer_team_name = user_dict[top_week_scorer]["team_name"]
+    top_week_scorer_display_name = user_dict[top_week_scorer]["display_name"]
+
+    stats["season_top_week_points"] = {
+        "display_name": top_week_scorer_display_name,
+        "team_name": top_week_scorer_team_name,
+        "points": max(user_dict[top_week_scorer]["scores"].values()),
+    }
 
     # get the top scorer for each week
     top_scorers = {}
@@ -77,14 +96,7 @@ def get_stats(user_dict):
             "score": user_dict[top_scorer]["scores"].get(week, 0),
         }
 
-    stats = {
-        "season": {
-            "display_name": top_scorer_display_name,
-            "team_name": top_scorer_team_name,
-            "score": user_dict[top_scorer]["total_points"],
-        },
-        "weeks": top_scorers,
-    }
+    stats["top_weekly_scorers"] = top_scorers
 
     return stats
 

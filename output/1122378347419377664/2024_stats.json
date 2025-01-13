@@ -1,10 +1,15 @@
 {
-    "season": {
+    "season_total_points": {
         "display_name": "Papathehutt1313",
-        "team_name": "Doctor to Doctor",
-        "score": 2513.42
+        "team_name": "Just a bunch of Hunks",
+        "points": 2579.14
     },
-    "weeks": {
+    "season_top_week_points": {
+        "display_name": "Pryda91",
+        "team_name": null,
+        "points": 218.02
+    },
+    "top_weekly_scorers": {
         "1": {
             "display_name": "DaCheeseSteaks",
             "team_name": "Mixon in da Kitchen",
